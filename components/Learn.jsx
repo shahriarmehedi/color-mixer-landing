@@ -2,7 +2,7 @@ import React from 'react'
 
 function Learn() {
     return (
-        <div className=' max-w-7xl mx-auto py-14 px-5  2xl:px-0'>
+        <div id='what' className=' max-w-7xl mx-auto py-14 px-5  2xl:px-0'>
             <h1 className='text-2xl lg:text-4xl font-semibold pb-10 text-orange text-center'>What will you learn in this course?</h1>
             <div className="flex  flex-col lg:flex-row gap-10 items-center">
 

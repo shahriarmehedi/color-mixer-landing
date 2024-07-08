@@ -2,7 +2,7 @@ import React from 'react'
 
 function For() {
     return (
-        <div className='max-w-5xl mx-auto px-5 py-14 2xl:px-0'>
+        <div id='who' className='max-w-5xl mx-auto px-5 py-14 2xl:px-0'>
             <div className='w-full'>
                 <h1 className='text-2xl lg:text-4xl font-semibold pb-10 text-orange text-center'>
                     Who is this course for?

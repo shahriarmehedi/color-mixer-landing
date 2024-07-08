@@ -5,7 +5,7 @@ function Video() {
         <div className=' max-w-6xl mx-auto py-14 px-5 2xl:px-0'>
             <div className="flex flex-col lg:flex-row gap-10 items-center">
                 <div className="flex-1">
-                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/7e90gBu4pas" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/tvICjt1KP6c" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 <div className="flex-1">
                     <p className="mt-4">Original Color Creation is a unique hands-on approach to working creatively with digital color, adapting traditional artistic color practices for RGB screen output in an interactive approach to working with color.</p>

@@ -2,6 +2,8 @@
 
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
+import axios from 'axios';
+
 
 export default function SignupModal({ isOpen, closeModal }) {
 
@@ -10,6 +12,7 @@ export default function SignupModal({ isOpen, closeModal }) {
     const [firstName, setFirstName] = useState('')
     const [email, setEmail] = useState('')
     const [error, setError] = useState('')
+    const [message, setMessage] = useState('')
 
     const handleFirstName = (e) => {
         setFirstName(e.target.value)
@@ -20,46 +23,44 @@ export default function SignupModal({ isOpen, closeModal }) {
     }
 
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch('/api/subscribe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email,
+                    firstName
+                }),
+            });
 
-    //     if (!email) {
-    //         setError('Please enter your email address')
-    //         return
-    //     }
+            const data = await response.json();
 
-    //     if (!email.includes('@')) {
-    //         setError('Please enter a valid email address')
-    //         return
-    //     }
+            console.log(data);
+
+            if (data.status === 'SUBSCRIBED') {
+                setMessage('Thanks for joining, I will be in touch!');
+            } else {
+                setMessage('Something went wrong! Please try again.');
+            }
+
+            setFirstName('');
+            setEmail('');
+
+            // close the modal after 10 seconds
+
+            setTimeout(() => {
+                closeModal();
+            }, 10000);
 
 
-    //     // Send to emailOctopus API
-
-    //     fetch('https://emailoctopus.com/lists/162b3236-32e2-490a-8bf6-5f35fff34042/members', {
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             email_address: email,
-    //             first_name: firstName
-    //         })
-    //     })
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log(data)
-    //             if (data.error) {
-    //                 setError(data.error)
-    //             } else {
-    //                 closeModal()
-    //             }
-    //         }) // Handle error
-    //         .catch(err => {
-    //             setError('An error occurred. Please try again later.')
-    //         })
-
-    // }
+        } catch (error) {
+            setMessage('Something went wrong!');
+        }
+    };
 
 
 
@@ -99,7 +100,7 @@ export default function SignupModal({ isOpen, closeModal }) {
 
                                     {/* MODAL CONTENT */}
 
-                                    <div className="flex gap-10">
+                                    <div className="flex flex-col lg:flex-row gap-10 relative">
                                         <div className='w-full lg:w-[50%]'>
                                             <h1 className='text-2xl lg:text-4xl font-semibold pb-10 text-orange'>
                                                 Get in the mix!
@@ -108,12 +109,8 @@ export default function SignupModal({ isOpen, closeModal }) {
                                                 Stay informed about the course launch for Original Composition
                                             </p>
 
-                                            {/* Form (First name, email*) */}
-
                                             <form
-                                                // onSubmit={handleSubmit}
-                                                method="post"
-                                                action="https://emailoctopus.com/lists/162b3236-32e2-490a-8bf6-5f35fff34042/members/embedded/1.6/add"
+                                                onSubmit={handleSubmit}
                                                 className='mt-10'>
                                                 <input
                                                     onChange={handleFirstName}
@@ -136,9 +133,24 @@ export default function SignupModal({ isOpen, closeModal }) {
                                                 </button>
                                             </form>
 
+                                            <h3 className='text-white pt-5'>
+                                                {
+                                                    message && message
+                                                }
+                                            </h3>
+
+
+                                            <p className='text-[#868686] bottom-[-30px] absolute hidden lg:block'>
+                                                *We will never spam, sell or share your information!
+                                            </p>
+
                                         </div>
                                         <div className='w-full lg:w-[50%]'>
                                             <img src="/dual.png" alt="signup" className='w-full' />
+
+                                            <p className='text-[#868686] lg:hidden pt-7'>
+                                                *We will never spam, sell or share your information!
+                                            </p>
                                         </div>
                                     </div>
 

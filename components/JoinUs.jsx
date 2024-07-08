@@ -2,7 +2,7 @@ import React from 'react'
 
 function JoinUs() {
     return (
-        <div className='max-w-5xl mx-auto px-5 py-14 2xl:px-0'>
+        <div id='how' className='max-w-5xl mx-auto px-5 py-14 2xl:px-0'>
 
 
             <div className='flex flex-col lg:flex-row gap-10'>

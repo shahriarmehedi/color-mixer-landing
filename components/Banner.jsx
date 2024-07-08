@@ -23,7 +23,9 @@ function Banner() {
 
 
     return (
-        <div className='
+        <div
+            id='welcome'
+            className='
             h-[50vh]
             lg:h-[58vh]
             bg-[url(/screens.png)]
