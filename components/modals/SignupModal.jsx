@@ -140,7 +140,7 @@ export default function SignupModal({ isOpen, closeModal }) {
                                             </h3>
 
 
-                                            <p className='text-[#868686] bottom-[-30px] absolute hidden lg:block'>
+                                            <p className='text-[#868686] bottom-[-50px] absolute hidden lg:block'>
                                                 *We will never spam, sell or share your information!
                                             </p>
 
