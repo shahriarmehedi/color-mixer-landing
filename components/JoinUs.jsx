@@ -1,6 +1,24 @@
-import React from 'react'
+'use client'
+
+import React, { useState } from 'react'
+import SignupModal from './modals/SignupModal'
 
 function JoinUs() {
+
+
+    // Signup modal
+
+    let [isOpen, setIsOpen] = useState(false)
+
+    function closeModal() {
+        setIsOpen(false)
+    }
+
+    function openModal() {
+        setIsOpen(true)
+    }
+
+
     return (
         <div id='how' className='max-w-5xl mx-auto px-5 py-14 2xl:px-0'>
 
@@ -22,12 +40,18 @@ function JoinUs() {
                     <p className=' text-zinc-300 text-sm mb-5'>
                         I promise you will find this course interesting, entertaining and useful. Sign up below, and I’ll keep you in the loop as launch time approaches. Hope to see you there!
                     </p>
-                    <button className=' bg-[#5771FF] border-2 border-[#6E6E6E] text-white text-sm px-10 py-2 rounded-lg mt-10 mb-5'>
+                    <button
+                        onClick={openModal}
+                        className=' bg-[#5771FF] border-2 border-[#6E6E6E] text-white text-sm px-10 py-2 rounded-lg mt-10 mb-5'>
                         Get Notified!
                     </button>
                 </div>
 
             </div>
+
+
+            {/* Modal */}
+            <SignupModal isOpen={isOpen} closeModal={closeModal} />
         </div>
     )
 }

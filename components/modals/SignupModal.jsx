@@ -8,6 +8,13 @@ import axios from 'axios';
 export default function SignupModal({ isOpen, closeModal }) {
 
 
+    // popup will close after automatically after 30 seconds if no action is taken
+
+    setTimeout(() => {
+        closeModal();
+    }, 30000);
+
+
 
     const [firstName, setFirstName] = useState('')
     const [email, setEmail] = useState('')
@@ -96,7 +103,7 @@ export default function SignupModal({ isOpen, closeModal }) {
                                 leaveFrom="opacity-100 scale-100"
                                 leaveTo="opacity-0 scale-95"
                             >
-                                <Dialog.Panel className="w-full max-w-4xl transform overflow-hidden rounded-2xl main-bg p-20 text-left align-middle shadow-xl transition-all">
+                                <Dialog.Panel className="w-full max-w-4xl transform overflow-hidden rounded-2xl main-bg p-7 lg:p-20 text-left align-middle shadow-xl transition-all">
 
                                     {/* MODAL CONTENT */}
 
