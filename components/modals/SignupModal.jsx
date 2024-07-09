@@ -8,14 +8,6 @@ import axios from 'axios';
 export default function SignupModal({ isOpen, closeModal }) {
 
 
-    // popup will close after automatically after 30 seconds if no action is taken
-
-    setTimeout(() => {
-        closeModal();
-    }, 30000);
-
-
-
     const [firstName, setFirstName] = useState('')
     const [email, setEmail] = useState('')
     const [error, setError] = useState('')
@@ -32,6 +24,13 @@ export default function SignupModal({ isOpen, closeModal }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!email) {
+            setError('Please enter your email address');
+            return;
+        }
+
+
         try {
             const response = await fetch('/api/subscribe', {
                 method: 'POST',
@@ -56,13 +55,6 @@ export default function SignupModal({ isOpen, closeModal }) {
 
             setFirstName('');
             setEmail('');
-
-            // close the modal after 10 seconds
-
-            setTimeout(() => {
-                closeModal();
-            }, 10000);
-
 
         } catch (error) {
             setMessage('Something went wrong!');

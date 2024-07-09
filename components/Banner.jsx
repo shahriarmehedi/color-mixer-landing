@@ -1,9 +1,17 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import SignupModal from './modals/SignupModal'
 
 function Banner() {
+
+    // popup modal will appear 30 seconds after page load
+
+    useEffect(() => {
+        setTimeout(() => {
+            openModal()
+        }, 30000)
+    }, [])
 
 
     // Signup modal
